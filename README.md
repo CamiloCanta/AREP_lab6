@@ -29,7 +29,7 @@ Corremos el siguiente comando:
 
 Clonamos el siguiente repositorio(RoundRobin) en el mismo directorio que esta el repositorio actual
 
-[![RoundRobin](https://github.com/CamiloCanta/RoundRobin.git)]
+[RoundRobin](https://github.com/CamiloCanta/RoundRobin.git)
 
 Y hacemos los mismos pasos
 
@@ -73,35 +73,35 @@ Ingresamos a: http://localhost:8080/app.html para previsualizar:
 ### Arquitectura del programa
 
 
-![image](https://github.com/julianCS21/AREP06/assets/96396177/4887a165-897e-4a90-9462-d0b8a21b2f86)
-
-Esta arquitectura se basa en tres componentes realmente:
-
-
-## Round Robin
-
-
-Contenedor que actua como frontend del proyecto, su objetivo es implementar el algoritmo de Round Robin para distribuir la carga entre el backend del proyecto 
+<img width="626" alt="image" src="https://github.com/CamiloCanta/AREP_lab6/assets/108955358/68e5c1a7-6773-47bd-a20b-e47242d5f3d8">
 
 
 
-## LogService
+- El servicio MongoDB es una instancia de MongoDB corriendo en un container de docker en una máquina virtual de EC2.
+- LogService es un servicio REST que recibe una cadena, la almacena en la base de datos y responde en un objeto JSON con las 10 ultimas cadenas almacenadas en la base de datos y la fecha en que fueron almacenadas.
+- La aplicación web APP-LB-RoundRobin está compuesta por un cliente web y al menos un servicio REST. El cliente web tiene un campo y un botón y cada vez que el usuario envía un mensaje, este se lo envía al servicio REST y actualiza la pantalla con la información que este le regresa en formato JSON. El servicio REST recibe la cadena e implementa un algoritmo de balanceo de cargas de Round Robin, delegando el procesamiento del mensaje y el retorno de la respuesta a cada una de las tres instancias del servicio LogService.
 
-Contenedor encargado del backend, el cual lee un mensaje y lo guarda en la base de datos, luego retorna los ultimos 10 mensajes.
-
-Este contenedor cuenta con 3 instancias para otorgar mayor disponibilidad al proyecto.
-
-
-## mongoDB
-
-Base de datos de mongo.
+### Despliegue en AWS
 
 
-## Evidencia
+<img width="670" alt="image" src="https://github.com/CamiloCanta/AREP_lab6/assets/108955358/1f326245-ad36-4e4c-b83d-643b2fcc3e01">
 
-- video
 
-El video demuestra que esta desplegado en la nube de AWS, ademas a traves de los logs de el contenedor de Round Robin se puede observar el funcionamiento del algoritmo.
+<img width="678" alt="image" src="https://github.com/CamiloCanta/AREP_lab6/assets/108955358/e37295d2-db5e-428b-bcb3-da1acdbe5d2c">
+
+
+<img width="678" alt="image" src="https://github.com/CamiloCanta/AREP_lab6/assets/108955358/dc41005a-3bb7-4b8e-8424-7d3bff643e34">
+
+
+<img width="683" alt="image" src="https://github.com/CamiloCanta/AREP_lab6/assets/108955358/09592c37-8f59-47b8-b519-10e3715cff4c">
+
+
+
+### Evidencia
+
+- [video](https://youtu.be/WEG0T3lRH9M)
+
+El video demuestra que esta desplegado en la nube de AWS, ademas a traves de los logs de el contenedor de RoundRobin se puede observar el funcionamiento.
 
 
 
